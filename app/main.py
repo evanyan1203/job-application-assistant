@@ -1,6 +1,8 @@
 # Import FastAPI framework
 from fastapi import FastAPI
 
+from app.models.user import User
+
 # Import Base (for models) and engine (database connection)
 from app.core.database import Base, engine
 
@@ -22,16 +24,3 @@ Base.metadata.create_all(bind=engine)
 @app.get("/")
 def root():
     return {"message": "Job Application Assistant is running"}
-
-
-
-
-from app.utils.security import hash_password, verify_password
-
-password = "test123"
-
-hashed = hash_password(password)
-print("Hashed:", hashed)
-
-is_valid = verify_password("test123", hashed)
-print("Match:", is_valid)
