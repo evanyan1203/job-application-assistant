@@ -32,13 +32,3 @@ SessionLocal = sessionmaker(
 # Base class for all ORM models
 # All tables must inherit from this
 Base = declarative_base()
-
-
-# Dependency function for FastAPI
-# Provides a database session per request
-def get_db():
-    db = SessionLocal()   # Create new session
-    try:
-        yield db          # Provide session to endpoint
-    finally:
-        db.close()        # Always close session after request
